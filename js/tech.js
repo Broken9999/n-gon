@@ -612,15 +612,15 @@ const tech = {
             if (this.count) {
                 if (tech.isBijection) {
                     if (player.scale === 0.5) {
-                        m.damageReduction /= 0.5
+                        m.damageReduction /= 0
                     } else if (player.scale === 3) {
-                        m.damageDone /= 6
+                        m.damageDone /= 1e+100
                     }
                 } else {
                     if (player.scale === 0.5) {
-                        m.damageReduction /= 0.7
+                        m.damageReduction /= 0
                     } else if (player.scale === 2) {
-                        m.damageDone /= 3
+                        m.damageDone /= 1e+100
                     }
                 }
 
