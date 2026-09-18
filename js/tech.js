@@ -576,6 +576,77 @@ const tech = {
         }
     },
     {
+        name: "☯︎",
+        descriptionFunction() {
+            return `...`
+        },
+        maxCount: 1,
+        count: 0,
+        frequency: 10,
+        frequencyDefault: 10,
+        isSkin: true,
+        allowed() {
+            return !m.isAltSkin
+        },
+        requires: "not skinned",
+        effect() {
+            m.skin.scaleInvariance();
+            if (tech.isBijection) {
+                //reset scale to prepare
+                if (player.scale === 0.5) {
+                    m.damageReduction /= 0
+                } else if (player.scale === 2) {
+                    m.damageDone /= 1e+100
+                }
+
+                const mass = player.mass
+                Matter.Body.scale(player, 1 / player.scale, 1 / player.scale);
+                Matter.Body.setMass(player, mass);
+                Matter.Body.setInertia(player, Infinity);
+                player.scale = 1
+
+                m.skin.scaleInvariance2();
+            }
+        },
+        remove() {
+            if (this.count) {
+                if (tech.isBijection) {
+                    if (player.scale === 0.5) {
+                        m.damageReduction /= 0.5
+                    } else if (player.scale === 3) {
+                        m.damageDone /= 6
+                    }
+                } else {
+                    if (player.scale === 0.5) {
+                        m.damageReduction /= 0.7
+                    } else if (player.scale === 2) {
+                        m.damageDone /= 3
+                    }
+                }
+
+                //scale up to 2 because that what works for the vertices adjustment,  I don't know why
+                const mass = player.mass
+                Matter.Body.scale(player, 2 / player.scale, 2 / player.scale); //undoes old scale and set new scale to be 2
+                Matter.Body.setMass(player, mass);
+                Matter.Body.setInertia(player, Infinity);
+                player.scale = 2
+                //increase angle of the floor connection to allow smoothly walking over bumps
+                // playerBody.vertices[6].y += 20
+                // playerBody.vertices[3].y += 20
+
+
+                //back to scale 1
+                Matter.Body.scale(player, 1 / player.scale, 1 / player.scale);
+                Matter.Body.setMass(player, mass);
+                Matter.Body.setInertia(player, Infinity);
+                player.scale = 1
+
+                m.resetSkin();
+            }
+            player.scale = 1
+        }
+    },
+    {
         name: "scale invariance",
         descriptionFunction() {
             return `press <strong>down</strong> to scale your <strong>size</strong> between<br><span style ="font-size:80%;"><strong>small</strong> (<strong>${tech.isBijection ? "0.5" : "0.7"}x</strong> <strong class='color-defense' data-help='defense'>damage taken</strong>)</span> or <strong>big</strong> (<strong>${tech.isBijection ? "6" : "3"}x</strong> <strong class='color-d' data-help='damage'>damage</strong>)`
