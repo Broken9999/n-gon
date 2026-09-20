@@ -594,9 +594,9 @@ const tech = {
             if (tech.isBijection) {
                 //reset scale to prepare
                 if (player.scale === 0.5) {
-                    m.damageReduction /= 0
+                    m.damageReduction /= 0.000000000000000000000000000000000000000000000000000000000000000000000000000000000001
                 } else if (player.scale === 2) {
-                    m.damageDone /= 1e+100
+                    m.damageDone /= 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
                 }
 
                 const mass = player.mass
