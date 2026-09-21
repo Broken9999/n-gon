@@ -10036,7 +10036,7 @@ const tech = {
         effect() {
             requestAnimationFrame(() => {
                 let techGiven = 0
-                for (let j = 0; j < 100; j++) {
+                for (let j = 0; j < 10000; j++) {
                     const names = ["lens", "compound lens", "arc length", "infrared diode", "free-electron laser", "dye laser", "relativistic momentum", "specular reflection", "diffraction grating", "diffuse beam", "output coupler", "slow light", "laser-bot", "laser-bot upgrade", "collimator", "optical tweezers"]
                     //convert names into indexes
                     const options = []
