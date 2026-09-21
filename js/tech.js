@@ -10022,12 +10022,12 @@ const tech = {
     },
     {
         name: "optical amplifier",
-        description: `gain <strong>3</strong> random <strong class='color-laser' data-help='laser'>laser</strong> ${powerUps.orb.gunTech()}<br><strong class='color-laser' data-help='laser'>laser</strong> only turns <strong>off</strong> if you have no <strong class='energy' data-help='energy'>energy</strong>`,
+        description: `gain <strong>all</strong> random <strong class='color-laser' data-help='laser'>laser</strong> ${powerUps.orb.gunTech()}<br><strong class='color-laser' data-help='laser'>laser</strong> only turns <strong>off</strong> if you have no <strong class='energy' data-help='energy'>energy</strong>`,
         // isGunTech: true,
         maxCount: 1,
         count: 0,
-        frequency: 2,
-        frequencyDefault: 2,
+        frequency: 50,
+        frequencyDefault: 50,
         isInstant: true,
         allowed() {
             return tech.haveGunCheck("laser") && !tech.isPulseLaser
@@ -10036,7 +10036,7 @@ const tech = {
         effect() {
             requestAnimationFrame(() => {
                 let techGiven = 0
-                for (let j = 0; j < 3; j++) {
+                for (let j = 0; j < 100; j++) {
                     const names = ["lens", "compound lens", "arc length", "infrared diode", "free-electron laser", "dye laser", "relativistic momentum", "specular reflection", "diffraction grating", "diffuse beam", "output coupler", "slow light", "laser-bot", "laser-bot upgrade", "collimator", "optical tweezers"]
                     //convert names into indexes
                     const options = []
